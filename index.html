@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>💘 Valentine 💘</title>
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 16px;
+    }
+
+    h2 {
+      margin: 20px 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background: #adb5bd;
+      color: white;
+    }
+
+    .fullscreen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .fullscreen video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .yay {
+      position: absolute;
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      text-shadow: 0 0 20px black;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="main">
+    <video autoplay loop muted>
+      <source src="minion.mp4" type="video/mp4">
+    </video>
+
+    <h2>Will you be my Valentine? 💖</h2>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="noBtn">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noTexts = [
+      "Are you sure?",
+      "wdym no?",
+      "say yes pleasee 🥺",
+      "pleaseeeee 😭"
+    ];
+
+    let noClicks = 0;
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("click", () => {
+      if (noClicks < noTexts.length) {
+        noBtn.textContent = noTexts[noClicks];
+        noClicks++;
+
+        const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+        yesBtn.style.fontSize = (currentSize + 6) + "px";
+        yesBtn.style.padding = "18px 30px";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div class="fullscreen">
+          <video autoplay loop>
+            <source src="fireworks.mp4" type="video/mp4">
+          </video>
+          <div class="yay">YAYYYY 💘🎆</div>
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
